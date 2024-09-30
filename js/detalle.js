@@ -121,7 +121,12 @@ function changeDate() {
                         projection.seats[index] = false; // Marcar como ocupado
                         seatButton.className = 'p-2 rounded bg-red-500 text-white'; // Cambiar estilo a ocupado
                         seatButton.disabled = true; // Deshabilitar el botón
-                        alert(`Has seleccionado el asiento ${seatLabel}`);
+                        Swal.fire({
+                            title: `Alert`,
+                            text: `Has seleccionado el asiento ${seatLabel}`,
+                            icon: "success"
+                          });
+                        //alert(`Has seleccionado el asiento ${seatLabel}`);
 
                         // Guardar la selección en localStorage
                         occupiedSeats.push(seatLabel);
@@ -135,9 +140,19 @@ function changeDate() {
             // Mostrar modal
             modal.classList.remove('hidden');
         } else {
-            alert('No se encontró la sala seleccionada.');
+            Swal.fire({
+                title: `Alert`,
+                text: "No se encontró la sala seleccionada",
+                icon: "success"
+              });
+            //alert('No se encontró la sala seleccionada.');
         }
     } else {
-        alert('No hay información de la película seleccionada.');
+        Swal.fire({
+            title: `Alert`,
+            text: "No hay información de la película seleccionada",
+            icon: "success"
+          });
+        //alert('No hay información de la película seleccionada.');
     }
 }
