@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio Sesion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <div class="flex h-screen w-full items-center justify-center bg-gradient-to-r from-white via-gray-200 to-red-200">
+        <div class="relative flex min-h-screen text-gray-800 antialiased flex-col justify-center overflow-hidden  py-6 sm:py-12">
+            <div class="relative py-3 sm:w-96 mx-auto text-center">
+              <span class="text-2xl font-semibold ">Teatro Apolo</span>
+              <div class="mt-4 bg-white shadow-md rounded-lg text-left">
+                <div class="h-2 bg-red-400 rounded-t-md"></div>
+                <div class="px-8 py-6 ">
+                  <label class="block font-semibold">Email </label>
+                  <input type="text" id="email" placeholder="Email" class="font-semibold border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-indigo-500 focus:ring-1 rounded-md">
+                  <label class="block mt-3 font-semibold">Contraseña </label>
+                  <input type="password" id="password" placeholder="Password" class="font-semibold border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-indigo-500 focus:ring-1 rounded-md">
+                    <div class="flex justify-between items-baseline">
+                      <button type="button" class="mt-4 bg-red-500 text-white py-2 px-6 rounded-md hover:bg-red-600 font-bold " onclick="validarLogin()">Iniciar Sesion</button>
+                      <a href="" class="text-sm hover:underline font-semibold">¿Olvido su contraseña?</a>
+                    </div>
+                </div>
+                
+            </div>
+          </div>
+        
+    </div>
+
+
+
+    <!--Scripts-->
+    <script src="./js/login.js"></script>
+</body>
+
+</html>

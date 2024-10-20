@@ -4,7 +4,7 @@ const movies = [
         "title": "Pablo Escobar",
         "author": "Emilio",
         "descripcion":"",
-        "image": "../img/Pablo-Escobar-el-patron-del-mal.jpg",
+        "image": "../src/img/Pablo-Escobar-el-patron-del-mal.jpg",
         "category": "now",
         "date": "2022-10-01",
         "genre":"accion",
@@ -28,7 +28,7 @@ const movies = [
         "title": "SWAT",
         "author": "hondon",
         "descripcion":"",
-        "image": "../img/SWAT.jpg",
+        "image": "../src/img/SWAT.jpg",
         "category": "soon",
         "date": "2023-10-05",
         "genre":"accion",
@@ -52,7 +52,7 @@ const movies = [
         "title": "Profundidades del Sena",
         "author": "shark",
         "descripcion":"",
-        "image": "../img/profundidades_sena.jpg",
+        "image": "../src/img/profundidades_sena.jpg",
         "category": "now",
         "date": "2022-10-30",
         "genre":"accion",
@@ -76,7 +76,7 @@ const movies = [
         "title": "Rebel ridge",
         "author": "tar",
         "descripcion":"",
-        "image": "../img/rebel.jpg",
+        "image": "../src/img/rebel.jpg",
         "category": "soon",
         "date": "2022-10-14",
         "genre":"accion",
@@ -100,7 +100,7 @@ const movies = [
         "title": "The black list",
         "author": "rick",
         "descripcion":"",
-        "image": "../img/the_black_list.jpeg",
+        "image": "../src/img/the_black_list.jpeg",
         "category": "now",
         "date": "2019-10-01",
         "genre":"accion",
@@ -124,7 +124,7 @@ const movies = [
         "title": "Mr. Robot",
         "author": "Hack",
         "descripcion":"",
-        "image": "../img/mr_boot.webp",
+        "image": "../src/img/mr_boot.webp",
         "category": "soon",
         "date": "2018-10-16",
         "genre":"accion",
@@ -148,7 +148,7 @@ const movies = [
         "title": "Unsolved",
         "author": "tupac",
         "descripcion":"",
-        "image": "../img/tupac.jpg",
+        "image": "../src/img/tupac.jpg",
         "category": "now",
         "date": "2010-09-01",
         "genre":"accion",
@@ -172,7 +172,7 @@ const movies = [
         "title": "Bad boys",
         "author": "Will Smith",
         "descripcion":"",
-        "image": "../img/bad-boys.webp",
+        "image": "../src/img/bad-boys.webp",
         "category": "now",
         "date": "2022-10-01",
         "genre":"accion",
@@ -193,6 +193,16 @@ const movies = [
 
     },
 ];
+
+
+// Verificar si el usuario ha iniciado sesión
+if (localStorage.getItem("loggedIn") !== "true") {
+    // Si no ha iniciado sesión, redirigir al login
+    window.location.href = "/src/login.html";
+} else {
+    // Si ha iniciado sesión, mostrar un mensaje de bienvenida
+    const username = localStorage.getItem("username"); // Almacena el nombre de usuario en localStorage al iniciar sesión
+}
 
 // Function to render movies
 function renderMovies(movies) {
@@ -293,5 +303,67 @@ function toggleSidebar() {
 
 function viewDetails(movie) {
     localStorage.setItem('selectedMovie', JSON.stringify(movie));
-    window.location.href = 'detail.html'; // Redirigir a la página de detalles
+    window.location.href = '/src/detail.html'; // Redirigir a la página de detalles
 }
+
+
+
+function logout(){
+    // Verificar si el usuario ha iniciado sesión
+    if (localStorage.getItem("loggedIn") !== "true") {
+        // Si no ha iniciado sesión, redirigir al login
+        window.location.href = "../../index.html";
+    } else {
+        // Si ha iniciado sesión, mostrar un mensaje de bienvenida
+        const email = localStorage.getItem("email"); // Almacena el nombre de usuario en localStorage al iniciar sesión
+        //document.getElementById("welcomeMessage").innerText = `Hola, ${email}!`;
+    }
+
+    // Remover información de sesión
+    localStorage.removeItem("loggedIn");
+    localStorage.removeItem("email"); // Remover el nombre de usuario al cerrar sesión
+    
+    Swal.fire({
+        title: `Alert`,
+        text: "Has cerrado sesión exitosamente",
+        icon: "success"
+      });
+
+      
+    setTimeout(() => {
+        // Redirigir o mostrar，默认 de usuario
+        window.location.href = "../../index.html"; // Cambia esto a tu página de destino
+    }, 2000);
+
+}
+
+
+function agregarCliente(){
+    window.location.href = "/src/client.html"; // Cambia esto a tu página de destino
+}
+
+// Función para obtener el usuario actual
+function getCurrentUser() {
+
+    let fieldUserCurrent = document.getElementById("userCurrent");
+
+    const email = localStorage.getItem("email");
+    const loggedIn = localStorage.getItem("loggedIn") === "true"; // Verifica si el usuario está autenticado
+
+    if (loggedIn && email) {
+        // Si el usuario está autenticado, busca su información en localStorage
+        const storedUsers = JSON.parse(localStorage.getItem('clients')) || [];
+        const currentUser = storedUsers.find(u => u.email === email);
+
+        if (currentUser) {
+            fieldUserCurrent.innerHTML = currentUser.email;
+        }
+    }
+}
+
+//espera dos segundos
+setTimeout(() => {
+    getCurrentUser();
+},1000)
+
+

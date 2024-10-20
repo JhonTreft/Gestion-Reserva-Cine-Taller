@@ -1,3 +1,14 @@
+
+// Verificar si el usuario ha iniciado sesión
+if (localStorage.getItem("loggedIn") !== "true") {
+    // Si no ha iniciado sesión, redirigir al login
+    window.location.href = "/src/login.html";
+} else {
+    // Si ha iniciado sesión, mostrar un mensaje de bienvenida
+    const username = localStorage.getItem("username"); // Almacena el nombre de usuario en localStorage al iniciar sesión
+}
+
+
 const movie = JSON.parse(localStorage.getItem('selectedMovie'));
 
 document.addEventListener('DOMContentLoaded', () => {
